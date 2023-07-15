@@ -1,0 +1,26 @@
+.EditingForm {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input {
+  margin-right: 10px;
+}
+
+.formButton {
+  padding: 10px;
+  border: 1px solid #1f1fac;
+  border-radius: 5px;
+  background-color: #4242e5;
+  color: aliceblue;
+  cursor: pointer;
+  min-width: 120px;
+  font-size: 14px;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.formButton:hover {
+  background-color: #988ab5;
+  border: 1px solid #988ab5;
+}

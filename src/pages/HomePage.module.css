@@ -1,0 +1,14 @@
+.homePageContainer {
+  text-align: center;
+}
+
+.imageContainer {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  background-image: url('../../public/yarn-phone-g482e08332_1280.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  z-index: 999;
+}
