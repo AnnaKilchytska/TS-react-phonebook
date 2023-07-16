@@ -1,46 +1,65 @@
-import { useDispatch } from 'react-redux';
 import { editContact } from 'redux/operations';
 import { TextField } from '@mui/material';
 import css from './EditindForm.module.css';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import React, { FC } from 'react';
 
-const EditingForm = ({ id, nameProp, numberProp, onSubmit }) => {
-  const dispatch = useDispatch();
+type Props = {
+  id: string;
+  nameProp: string;
+  numberProp: string;
+  onSubmit: Function;
+};
 
-  const handleSubmit = e => {
+type FormFields = {
+  name: HTMLInputElement;
+  number: HTMLInputElement;
+};
+
+const EditingForm: FC<Props> = ({ id, nameProp, numberProp, onSubmit }) => {
+  const dispatch = useAppDispatch();
+
+  const handleSubmit: React.FormEventHandler<
+    HTMLFormElement & FormFields
+  > = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    if (form.elements.name.value === '' && form.elements.number.value === ``) {
+
+    if (form.name.value === '' && form.number.value === ``) {
       onSubmit();
       return;
     }
 
-    if (form.elements.name.value === '') {
-      dispatch(
-        editContact({
-          id,
-          body: {
-            number: form.elements.number?.value,
-          },
-        })
-      );
+    if (form.name.value === '') {
+      const contact: {
+        id: string;
+        body: { number: string | undefined };
+      } = {
+        id,
+        body: {
+          number: form.number?.value,
+        },
+      };
+
+      dispatch(editContact(contact));
     }
-    if (form.elements.number.value === '') {
-      dispatch(
-        editContact({
-          id,
-          body: {
-            name: form.elements.name?.value,
-          },
-        })
-      );
+    if (form.number.value === '') {
+      const contact: { id: string; body: { name: string } } = {
+        id,
+        body: {
+          name: form.name?.value,
+        },
+      };
+
+      dispatch(editContact(contact));
     }
 
     dispatch(
       editContact({
         id,
         body: {
-          name: form.elements.name?.value,
-          number: form.elements.number?.value,
+          name: form.name?.value,
+          number: form.number?.value,
         },
       })
     );
@@ -79,7 +98,7 @@ const EditingForm = ({ id, nameProp, numberProp, onSubmit }) => {
         type="text"
         className={css.input}
         name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         defaultValue={nameProp}
@@ -92,7 +111,7 @@ const EditingForm = ({ id, nameProp, numberProp, onSubmit }) => {
         type="tel"
         className={css.input}
         name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         defaultValue={numberProp}
