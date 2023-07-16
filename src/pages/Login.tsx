@@ -1,9 +1,12 @@
 import LoginForm from 'components/LoginForm/LoginForm';
+import React from 'react';
 
-export default function Login() {
+const Login: React.FC = () => {
   return (
     <div>
       <LoginForm />
     </div>
   );
-}
+};
+
+export default Login;
