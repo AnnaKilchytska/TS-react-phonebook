@@ -1,10 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface FilterSlice {
+  value: string;
+}
+
+const initialState: FilterSlice = {
+  value: '',
+};
+
 const filterSlice = createSlice({
   // Ім'я слайсу
   name: 'filter',
   // Початковий стан редюсера слайсу
-  initialState: { value: '' },
+  initialState,
   // Об'єкт редюсерів
   reducers: {
     filterContacts(state, action) {
