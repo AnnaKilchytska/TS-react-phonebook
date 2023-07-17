@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectIsLoggenIn } from 'redux/auth/selectors';
 import css from './HomePage.module.css';
+import React from 'react';
+import { useAppSelector } from 'hooks/useAppSelector';
 
-export default function HomePage() {
-  const isLoggedIn = useSelector(selectIsLoggenIn);
+const HomePage: React.FC = () => {
+  const isLoggedIn = useAppSelector(selectIsLoggenIn);
 
   return (
     <div className={css.homePageContainer}>
@@ -21,4 +22,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

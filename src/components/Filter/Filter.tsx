@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux';
 import { filterContacts } from 'redux/filterSlice';
 
 import css from './Filter.module.css';
 import { TextField } from '@mui/material';
+import { useAppDispatch } from 'hooks/useAppDispatch';
 
-function Filter() {
-  const dispatch = useDispatch();
+const Filter: React.FC = () => {
+  const dispatch = useAppDispatch();
   return (
     <div className={css.filterContainer}>
       {/* <input
@@ -24,6 +24,6 @@ function Filter() {
       />
     </div>
   );
-}
+};
 
 export default Filter;

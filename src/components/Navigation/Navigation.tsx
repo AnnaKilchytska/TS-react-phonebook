@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { selectIsLoggenIn } from 'redux/auth/selectors';
 import css from './Navigation.module.css';
 
-function Navigation() {
+const Navigation: React.FC = () => {
   const isLoggedIn = useSelector(selectIsLoggenIn);
 
   return (
@@ -18,6 +18,6 @@ function Navigation() {
       )}
     </div>
   );
-}
+};
 
 export default Navigation;

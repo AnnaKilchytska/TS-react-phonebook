@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 
-export default function Layout() {
+const Layout: React.FC = () => {
   return (
     <>
       <Header />
@@ -13,4 +13,6 @@ export default function Layout() {
       </Suspense>
     </>
   );
-}
+};
+
+export default Layout;

@@ -1,11 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { selectUser } from 'redux/auth/selectors';
 import css from './UserMenu.module.css';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppSelector } from 'hooks/useAppSelector';
 
-function UserMenu() {
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+const UserMenu: React.FC = () => {
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   return (
     <div className={css.userMenuContainer}>
@@ -19,6 +20,6 @@ function UserMenu() {
       </button>
     </div>
   );
-}
+};
 
 export default UserMenu;
