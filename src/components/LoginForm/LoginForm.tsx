@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -10,22 +9,34 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/useAppDispatch';
 
-export default function LoginForm() {
-  const dispatch = useDispatch();
+type LoginFromFields = {
+  email: HTMLInputElement;
+  password: HTMLInputElement;
+};
 
-  function handleSubmit(event) {
+// type NavlinkCustomProp = {
+//   variant?: string;
+// };
+
+const LoginForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const handleSubmit: React.FormEventHandler<
+    HTMLFormElement & LoginFromFields
+  > = event => {
     event.preventDefault();
 
-    const form = event.target;
+    const form = event.currentTarget;
     dispatch(
       logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        email: form.email.value,
+        password: form.password.value,
       })
     );
     form.reset();
-  }
+  };
 
   const theme = createTheme();
 
@@ -100,7 +111,10 @@ export default function LoginForm() {
               Sign In
             </Button>
 
-            <NavLink to="/register" variant="body2">
+            <NavLink
+              to="/register"
+              // variant="body2"
+            >
               {"Don't have an account? Sign Up"}
             </NavLink>
           </Box>
@@ -108,7 +122,7 @@ export default function LoginForm() {
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 // export default function SignIn() {
 //   const handleSubmit = (event) => {
@@ -124,3 +138,5 @@ export default function LoginForm() {
 
 //   );
 // }
+
+export default LoginForm;

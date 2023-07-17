@@ -8,7 +8,7 @@ import {
   editContact,
   fetchContacts,
 } from './operations';
-import { Contact } from 'types/Contact';
+import { Contact } from 'models/Contact';
 
 interface ContactState {
   items: Contact[];

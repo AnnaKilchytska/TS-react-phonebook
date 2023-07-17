@@ -8,7 +8,7 @@ import css from './ContactForm.module.css';
 // import { type } from 'os';
 import { TextField } from '@mui/material';
 import { useAppDispatch } from 'hooks/useAppDispatch';
-import { Contact } from 'types/Contact';
+import { Contact } from 'models/Contact';
 
 const ContactForm: React.FC = () => {
   const [name, setName] = useState<string>('');
