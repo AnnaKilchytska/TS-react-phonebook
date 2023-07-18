@@ -75,3 +75,15 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+// <
+//   {
+//     user: {
+//       name: string | null;
+//       email: string | null;
+//       password: string | null;
+//     };
+//     token: string | null;
+//   },
+//   string
+// >
