@@ -15,6 +15,7 @@ import { useAppSelector } from 'hooks/useAppSelector';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
+
   const isRefreshing = useAppSelector(selectIsRefreshing);
 
   useEffect(() => {
