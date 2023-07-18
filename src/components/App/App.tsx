@@ -6,15 +6,16 @@ import HomePage from 'pages/HomePage';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/operations';
 import css from './App.module.css';
 import { selectIsRefreshing } from 'redux/auth/selectors';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppSelector } from 'hooks/useAppSelector';
 
-function App() {
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
+const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const isRefreshing = useAppSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -53,6 +54,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

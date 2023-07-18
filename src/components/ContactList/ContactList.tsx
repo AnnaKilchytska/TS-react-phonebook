@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactList.module.css';
 import { deleteContact, fetchContacts } from 'redux/operations';
 import { getError, getFilteredContacts, getIsLoading } from 'redux/selectors';
@@ -6,27 +5,29 @@ import { useEffect, useState } from 'react';
 import { Fab } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import EditingForm from 'components/EditingForm/EditingForm';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppSelector } from 'hooks/useAppSelector';
 
-function ContactList() {
-  const [isBeingEdited, setIsBeingEdited] = useState(false);
-  const [id, setId] = useState(null);
+const ContactList: React.FC = () => {
+  const [isBeingEdited, setIsBeingEdited] = useState<boolean | false>(false);
+  const [id, setId] = useState<string | undefined>(undefined);
 
   const toggleIsBeingEdited = () => setIsBeingEdited(!isBeingEdited);
 
-  const handleEdit = id => {
+  const handleEdit = (id: string | undefined) => {
     toggleIsBeingEdited();
     setId(id);
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const filteredContacts = useSelector(getFilteredContacts);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const filteredContacts = useAppSelector(getFilteredContacts);
+  const isLoading = useAppSelector(getIsLoading);
+  const error = useAppSelector(getError);
 
   return (
     <>
@@ -74,6 +75,6 @@ function ContactList() {
       </ul>
     </>
   );
-}
+};
 
 export default ContactList;

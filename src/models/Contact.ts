@@ -1,5 +1,5 @@
 export type Contact = {
-  name?: string;
-  id?: string;
-  number?: string;
+  name?: string | undefined;
+  id?: string | undefined;
+  number?: string | undefined;
 };

@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 
 import Avatar from '@mui/material/Avatar';
@@ -10,24 +9,33 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider, createTheme } from '@mui/material';
+import { useAppDispatch } from 'hooks/useAppDispatch';
 
-export default function RegisterForm() {
-  const dispatch = useDispatch();
+type RegisterFromFields = {
+  name: HTMLInputElement;
+  email: HTMLInputElement;
+  password: HTMLInputElement;
+};
+
+const RegisterForm: React.FC = () => {
+  const dispatch = useAppDispatch();
 
   const theme = createTheme();
 
-  function handleSubmit(event) {
+  const handleSubmit: React.FormEventHandler<
+    HTMLFormElement & RegisterFromFields
+  > = event => {
     event.preventDefault();
-    const form = event.target;
+    const form = event.currentTarget;
     dispatch(
       register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name: form.name.value,
+        email: form.email.value,
+        password: form.password.value,
       })
     );
     form.reset();
-  }
+  };
 
   return (
     // my initial code
@@ -117,4 +125,6 @@ export default function RegisterForm() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default RegisterForm;

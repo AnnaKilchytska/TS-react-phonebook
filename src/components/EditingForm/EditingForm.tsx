@@ -5,9 +5,9 @@ import { useAppDispatch } from 'hooks/useAppDispatch';
 import React, { FC } from 'react';
 
 type Props = {
-  id: string;
-  nameProp: string;
-  numberProp: string;
+  id: string | undefined;
+  nameProp: string | undefined;
+  numberProp: string | undefined;
   onSubmit: Function;
 };
 
@@ -32,8 +32,8 @@ const EditingForm: FC<Props> = ({ id, nameProp, numberProp, onSubmit }) => {
 
     if (form.name.value === '') {
       const contact: {
-        id: string;
-        body: { number: string | undefined };
+        id?: string | undefined;
+        body: { number?: string | undefined };
       } = {
         id,
         body: {
@@ -44,7 +44,7 @@ const EditingForm: FC<Props> = ({ id, nameProp, numberProp, onSubmit }) => {
       dispatch(editContact(contact));
     }
     if (form.number.value === '') {
-      const contact: { id: string; body: { name: string } } = {
+      const contact: { id: string | undefined; body: { name: string } } = {
         id,
         body: {
           name: form.name?.value,
