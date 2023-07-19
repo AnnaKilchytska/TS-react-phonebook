@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register } from './operations';
+import { User } from 'models/User';
 
 interface AuthState {
-  user: { name: string | null; email: string | null };
+  user: User;
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;

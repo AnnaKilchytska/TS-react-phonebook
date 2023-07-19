@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 import css from './EditindForm.module.css';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import React, { FC } from 'react';
+import { Contact } from 'models/Contact';
 
 type Props = {
   id: string | undefined;
@@ -32,8 +33,9 @@ const EditingForm: FC<Props> = ({ id, nameProp, numberProp, onSubmit }) => {
 
     if (form.name.value === '') {
       const contact: {
-        id?: string | undefined;
-        body: { number?: string | undefined };
+        id: string | undefined;
+        body: Contact;
+        //{ number?: string | undefined };
       } = {
         id,
         body: {
@@ -44,7 +46,11 @@ const EditingForm: FC<Props> = ({ id, nameProp, numberProp, onSubmit }) => {
       dispatch(editContact(contact));
     }
     if (form.number.value === '') {
-      const contact: { id: string | undefined; body: { name: string } } = {
+      const contact: {
+        id: string | undefined;
+        body: Contact;
+        //    { name: string }
+      } = {
         id,
         body: {
           name: form.name?.value,
